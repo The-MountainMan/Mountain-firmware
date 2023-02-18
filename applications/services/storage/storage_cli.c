@@ -53,10 +53,10 @@ static void storage_cli_info(Cli* cli, FuriString* path) {
             storage_cli_print_error(error);
         } else {
             printf(
-                "Label: %s\r\nType: LittleFS\r\n%luKiB total\r\n%luKiB free\r\n",
+                "Label: %s\r\nType: LittleFS\r\n%.2f GB total\r\n%.2f GB free\r\n",
                 furi_hal_version_get_name_ptr() ? furi_hal_version_get_name_ptr() : "Unknown",
-                (uint32_t)(total_space / 1024),
-                (uint32_t)(free_space / 1024));
+                (uint32_t)(total_space / 1048576.0),
+                (uint32_t)(free_space / 1048576.0));
         }
     } else if(furi_string_cmp_str(path, STORAGE_EXT_PATH_PREFIX) == 0) {
         SDInfo sd_info;
